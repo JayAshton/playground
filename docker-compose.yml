@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:17.6
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=S3cret
+      - POSTGRES_USER=pguser
+      - POSTGRES_DB=app_db
+    healthcheck:
+      test: >
+        pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} || exit 1
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  postgres_data:
