@@ -1,4 +1,42 @@
 services:
+  traefik:
+    image: traefik:v3.0
+    command:
+      - "--api.insecure=true"          # optional dashboard on :8081
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"    # HTTP
+      - "8081:8081" # Traefik dashboard
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  products-service:
+    build:
+      context: microservices/.
+      dockerfile: products-service/Dockerfile
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.products.rule=PathPrefix(`/products`)"
+      - "traefik.http.middlewares.products-stripprefix.stripprefix.prefixes=/products"
+      - "traefik.http.routers.products.middlewares=products-stripprefix"
+      - "traefik.http.services.products.loadbalancer.server.port=8080"
+    ports:
+      - 8080
+
+  reviews-service:
+    build:
+      context: microservices/.
+      dockerfile: reviews-service/Dockerfile
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.reviews.rule=PathPrefix(`/reviews`)"
+      - "traefik.http.middlewares.reviews-stripprefix.stripprefix.prefixes=/reviews"
+      - "traefik.http.routers.reviews.middlewares=reviews-stripprefix"
+      - "traefik.http.services.reviews.loadbalancer.server.port=8080"
+    ports:
+      - 8080
+
   postgres:
     image: postgres:17.6
     restart: always
@@ -16,12 +54,6 @@ services:
       interval: 1s
       timeout: 5s
       retries: 10
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
 
 volumes:
   postgres_data:

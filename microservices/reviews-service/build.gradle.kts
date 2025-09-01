@@ -40,6 +40,6 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-tasks.bootJar {
-    mainClass = "com.example.reviews.Application"
+tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun> {
+    mainClass.set("com.example.ApplicationKt")
 }

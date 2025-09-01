@@ -6,12 +6,12 @@ All of the below are able to run locally via docker.
 
 ## UI Applications
 
-- A react based app that has a typical inventory display (display products, view products, pagination, search etc)
+- A react based app that has a typical inventory display (display products, view products, display reviews, pagination, search etc)
 
 ## Microservices
 
-- A microservice used by the UI application to display products
-- A microservice used by the UI application to receive and display reviews for products
+- A microservice used by the UI application to retrieve products
+- A microservice used by the UI application to accept, store and retrieve reviews for products
 
 ## Databases
 
@@ -31,3 +31,17 @@ Given the above "landscape", it enables several types of testing to take place:
   - E2E API tests
   - Integration tests (database testing, schema validation, contract testing)
   - Unit tests
+
+## Local Env
+
+The UI app, microservices and database can be run locally via Docker. [scripts](./scripts) are also available for ease of setup.
+
+Traefik is used as a reverse proxy so that all services can be accessed via localhost e.g:
+
+```
+https://localhost/products points to the products service
+https://localhost:reviews points to the reviews service
+etc
+```
+
+Ultimately this makes things a bit easier to find and access rather than memorising port numbers.
