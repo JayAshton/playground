@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.1.20"
+    kotlin("jvm")
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.5.5"
     id("io.spring.dependency-management") version "1.1.7"
@@ -38,4 +38,8 @@ tasks.test {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.bootJar {
+    mainClass = "com.example.reviews.Application"
 }

@@ -1,11 +1,11 @@
-package com.example.shop
+package com.example.products
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ShopApplication
+class ProductsApplication
 
 fun main(args: Array<String>) {
-    runApplication<ShopApplication>(*args)
+    runApplication< ProductsApplication>(*args)
 }
