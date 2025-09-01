@@ -1,4 +1,5 @@
 .DS_Store
-.idea/**
+.idea/
 /microservices/.gradle/**
 /microservices/build/**
+/microservices/**/build/**
