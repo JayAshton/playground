@@ -39,8 +39,8 @@ The UI app, microservices and database can be run locally via Docker. [scripts](
 Traefik is used as a reverse proxy so that all services can be accessed via localhost e.g:
 
 ```
-https://localhost/products points to the products service
-https://localhost:reviews points to the reviews service
+https://localhost/products points to the products controller
+https://localhost/reviews points to the reviews controller
 etc
 ```
 

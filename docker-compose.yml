@@ -18,11 +18,15 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.products.rule=PathPrefix(`/products`)"
-      - "traefik.http.middlewares.products-stripprefix.stripprefix.prefixes=/products"
-      - "traefik.http.routers.products.middlewares=products-stripprefix"
       - "traefik.http.services.products.loadbalancer.server.port=8080"
     ports:
       - 8080
+    healthcheck:
+      test: "curl --fail --silent reviews-service:8080/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
@@ -37,11 +41,15 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.reviews.rule=PathPrefix(`/reviews`)"
-      - "traefik.http.middlewares.reviews-stripprefix.stripprefix.prefixes=/reviews"
-      - "traefik.http.routers.reviews.middlewares=reviews-stripprefix"
       - "traefik.http.services.reviews.loadbalancer.server.port=8080"
     ports:
       - 8080
+    healthcheck:
+      test: "curl --fail --silent reviews-service:8080/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
