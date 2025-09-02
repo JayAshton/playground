@@ -32,7 +32,6 @@ class ProductControllerTest @Autowired constructor(
             imageUrl = "https://example.com/image.png"
         )
 
-        // Mock service using Mockito-Kotlin
         whenever(productService.update(eq("Laptop"), any())).thenReturn(update)
 
         mockMvc.perform(
