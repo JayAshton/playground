@@ -3,9 +3,8 @@ package com.example.products
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
-import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
+
 class ProductServiceTest : BaseTest() {
 
     private val productRepository = mock(ProductRepository::class.java)
