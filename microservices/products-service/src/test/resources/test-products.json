@@ -1,20 +1,14 @@
 [
   {
-    "name": "test product 1",
+    "name": "special test product 1",
     "price": 12.00,
-    "description": "test description for test product 1",
+    "description": "description for special test product 1",
     "imageUrl": "https://placehold.co/600x400"
   },
   {
-    "name": "testing 12321312",
+    "name": "special test product 2",
     "price": 232.00,
-    "description": "test description for test product 123123213132132131312",
-    "imageUrl": "https://placehold.co/600x400"
-  },
-  {
-    "name": "another test product with a really long asuihdsauhidshiuadhauduauasdaudhusadhuahdsahdsaudsahdhia",
-    "price": 55,
-    "description": "test descriptionnnnnnn",
+    "description": "description for special test product 2",
     "imageUrl": "https://placehold.co/600x400"
   }
 ]
