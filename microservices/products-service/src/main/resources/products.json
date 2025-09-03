@@ -22,5 +22,23 @@
     "price": 232,
     "description": "test descriptionnnnnsad asdassa   asdsadadas d da sdann",
     "imageUrl": "https://placehold.co/600x400"
+  },
+  {
+    "name": "test product again",
+    "price": 335.00,
+    "description": "test descriptionnnnnsa sdasd asd asd sd sad ad asdassa   asdsadadas d da sdann",
+    "imageUrl": "https://placehold.co/600x400"
+  },
+  {
+    "name": "test project 2",
+    "price": 22,
+    "description": "sadsadsadsad asdasd adas asd ",
+    "imageUrl": "https://placehold.co/600x400"
+  },
+  {
+    "name": "test",
+    "price": 3.0,
+    "description": "tas dasd sa dasd sdaest descriptionnnnnsad asdassa   asdsadadas d da sdann",
+    "imageUrl": "https://placehold.co/600x400"
   }
 ]
