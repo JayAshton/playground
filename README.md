@@ -1,4 +1,4 @@
-# playground
+# Playground
 
 A playground of databases, microservices and UI clients for trying new testing tools. This takes form as a fictional product order shop.
 
