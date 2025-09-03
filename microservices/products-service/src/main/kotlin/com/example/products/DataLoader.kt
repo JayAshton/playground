@@ -53,13 +53,26 @@ class DataLoader(private val productRepository: ProductRepository) : CommandLine
             val entity = HttpEntity(review, headers)
 
             try {
-                restTemplate.postForEntity(reviewsServiceUrl + "/reviews", entity, String::class.java)
+                sendReview(restTemplate, entity)
             } catch (e: Exception) {
                 println("Failed to create review: ${e.message}")
-                throw e
             }
         }
-
         println("***Sample reviews bootstrapped***")
+    }
+
+    fun sendReview(restTemplate: RestTemplate, entity: HttpEntity<Map<String, Any?>>) {
+        var attempt = 0
+        while (attempt < 3) {
+            try {
+                restTemplate.postForEntity("$reviewsServiceUrl/reviews", entity, String::class.java)
+                return
+            } catch (e: Exception) {
+                attempt++
+                println("Attempt $attempt failed: ${e.message}. Retrying in 5s...")
+                Thread.sleep(5000)
+            }
+        }
+        throw RuntimeException("Failed to post review after ${attempt} attempts")
     }
 }
