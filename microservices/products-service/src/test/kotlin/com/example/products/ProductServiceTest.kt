@@ -3,6 +3,7 @@ package com.example.products
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
+import java.util.UUID
 
 
 class ProductServiceTest : BaseTest() {
@@ -12,7 +13,7 @@ class ProductServiceTest : BaseTest() {
 
     @Test
     fun `should update product when exists`() {
-        val existing = Product(id = 1, name = "Tablet", price = 500.0, description = "Android", imageUrl = "https://example.com/image.png")
+        val existing = Product(id = UUID.randomUUID(), name = "Tablet", price = 500.0, description = "Android", imageUrl = "https://example.com/image.png")
         val update = Product(name = "Tablet", price = 550.0, description = "Updated Android", imageUrl = "https://example.com/image.png")
 
         `when`(productRepository.findByName("Tablet")).thenReturn(existing)
