@@ -6,5 +6,5 @@ import java.util.UUID
 
 @Repository
 interface ReviewRepository : JpaRepository<Review, Long> {
-    fun findByProductId(productId: UUID): Review?
+    fun findByProductId(productId: UUID): List<Review>?
 }

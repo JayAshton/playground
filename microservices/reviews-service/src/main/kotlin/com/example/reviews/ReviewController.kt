@@ -15,7 +15,7 @@ class ReviewController(private val reviewService: ReviewService) {
     fun listReviews(): List<Review> = reviewService.findAll()
 
     @GetMapping("/{productId}")
-    fun findByProductId(@PathVariable productId: UUID): Review? = reviewService.findByProductId(productId)
+    fun findByProductId(@PathVariable productId: UUID): List<Review>? = reviewService.findByProductId(productId)
 
     @PostMapping
     fun save(@RequestBody review: Review): Review = reviewService.save(review)
