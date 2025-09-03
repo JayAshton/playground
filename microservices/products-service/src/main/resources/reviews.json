@@ -1,0 +1,32 @@
+[
+  {
+    "rating": 2,
+    "description": "description for rating",
+    "productIndex": 0
+  },
+  {
+    "rating": 2,
+    "description": "description for rating",
+    "productIndex": 1
+  },
+  {
+    "rating": 1,
+    "description": "description for rating",
+    "productIndex": 2
+  },
+  {
+    "rating": 5,
+    "description": "description for rating",
+    "productIndex": 3
+  },
+  {
+    "rating": 3,
+    "description": "description for rating",
+    "productIndex": 4
+  },
+  {
+    "rating": 4,
+    "description": "description for rating",
+    "productIndex": 5
+  }
+]

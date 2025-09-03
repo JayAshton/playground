@@ -12,4 +12,5 @@ class ReviewService(private val repository: ReviewRepository) {
     fun findByProductId(productId: UUID): Review =
         repository.findByProductId(productId)
             ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Reviews for '$productId' not found")
+    fun save(review: Review): Review = repository.save(review)
 }

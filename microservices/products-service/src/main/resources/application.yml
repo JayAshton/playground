@@ -1,3 +1,6 @@
+reviews:
+  service:
+    url: ${REVIEWS_SERVICE_URL:http://localhost}
 spring:
   datasource:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:app_db}
