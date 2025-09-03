@@ -1,12 +1,17 @@
 package com.example.reviews
 
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
 
 @RestController
 @RequestMapping("/reviews")
-class ReviewController() {
+class ReviewController(private val reviewService: ReviewService) {
     @GetMapping("/all")
-    fun index() = "Hello"
+    fun listReviews(): List<Review> = reviewService.findAll()
+
+    @GetMapping("/{productId}")
+    fun findByProductId(@PathVariable productId: UUID): Review? = reviewService.findByProductId(productId)
 }

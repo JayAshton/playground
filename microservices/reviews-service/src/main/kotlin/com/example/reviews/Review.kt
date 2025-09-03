@@ -1,4 +1,4 @@
-package com.example.products
+package com.example.reviews
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -7,10 +7,9 @@ import jakarta.persistence.Id
 import java.util.UUID
 
 @Entity
-data class Product(
-    @Id @GeneratedValue(strategy = GenerationType.UUID) val id: UUID? = null,
-    var name: String,
+data class Review(
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long = 0,
+    var rating: Int,
     var description: String?,
-    var price: Double,
-    var imageUrl: String?
+    var productId: UUID,
 )
