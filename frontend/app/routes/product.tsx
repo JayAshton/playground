@@ -3,9 +3,12 @@ import { config } from "~/config";
 import { ProductComponent } from "~/inventory/product";
 import type { Route } from "./+types/home";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ data }: Route.MetaArgs) {
+  if (!data?.product) {
+    return [{ title: "Shop App" }];
+  }
   return [
-    { title: "Shop App" },
+    { title: `${data.product.name} | Shop App` },
   ];
 }
 
