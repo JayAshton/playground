@@ -2,8 +2,11 @@ package com.example.products
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.github.javafaker.Faker
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.CommandLineRunner
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
@@ -11,8 +14,14 @@ import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
+@Configuration
+class FakerConfig {
+    @Bean
+    fun faker(): Faker = Faker()
+}
+
 @Component
-class DataLoader(private val productRepository: ProductRepository) : CommandLineRunner {
+class DataLoader(private val productRepository: ProductRepository, private val faker: Faker = Faker()) : CommandLineRunner {
 
     @Value("\${reviews.service.url}")
     private val reviewsServiceUrl: String? = null
