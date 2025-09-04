@@ -1,6 +1,12 @@
 .DS_Store
 .idea/
+
 /microservices/.gradle/**
 /microservices/build/**
 /microservices/**/build/**
 /microservices/**/out/**
+
+frontend/node_modules/
+frontend/.next/
+frontend/build/
+frontend/.react-router/
