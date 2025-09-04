@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router";
+import { config } from "~/config";
 import { Inventory } from "../inventory/inventory";
 import type { Route } from "./+types/home";
 
@@ -9,9 +10,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader() {
-  const url = process.env.PRODUCTS_API_URL || "http://localhost/products";
-  console.log(url);
-  const res = await fetch(`${url}/all`);
+  const res = await fetch(`${config.productsUrl}/all`);
   if (!res.ok) throw new Error("Failed to fetch products");
   return res.json();
 }
