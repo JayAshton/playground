@@ -9,7 +9,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader({params}) {
-  const res = await fetch(`http://localhost/products/find/${params.productId}`);
+  const url = process.env.PRODUCTS_API_URL || "http://localhost/products";
+  const res = await fetch(`${url}/find/${params.productId}`);
   if (!res.ok) throw new Error(`Failed to fetch product: ${params.productId}`);
   return res.json();
 }

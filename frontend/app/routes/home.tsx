@@ -9,7 +9,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader() {
-  const res = await fetch("http://localhost/products/all");
+  const url = process.env.PRODUCTS_API_URL || "http://localhost/products";
+  console.log(url);
+  const res = await fetch(`${url}/all`);
   if (!res.ok) throw new Error("Failed to fetch products");
   return res.json();
 }

@@ -12,6 +12,22 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
+  app:
+    container_name: app
+    build:
+      context: frontend/.
+      dockerfile: Dockerfile
+    volumes:
+      - node_modules:/app/node_modules
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=PathPrefix(`/`)"
+      - "traefik.http.services.app.loadbalancer.server.port=3000"
+    ports:
+      - 3000
+    environment:
+      - PRODUCTS_API_URL=http://products-service:8080/products
+
   products-service:
     container_name: products
     build:
@@ -80,3 +96,4 @@ services:
 
 volumes:
   postgres_data:
+  node_modules:
