@@ -3,14 +3,18 @@ package com.example.products
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 import org.springframework.http.HttpStatus
+import java.util.UUID
 
 @Service
 class ProductService(private val repository: ProductRepository) {
     fun findAll(): List<Product> =
         repository.findAll()
+
     fun findByName(name: String): Product =
         repository.findByName(name)
             ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Product '$name' not found")
+
+    fun findByProductId(productId: UUID): Product? = repository.findById(productId)
 
     fun save(product: Product): Product = repository.save(product)
 

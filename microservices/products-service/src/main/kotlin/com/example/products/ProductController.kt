@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
 
 @RestController
 @RequestMapping("/products")
@@ -18,6 +19,9 @@ class ProductController(private val productService: ProductService) {
 
     @GetMapping("/{name}")
     fun findByName(@PathVariable name: String): Product? = productService.findByName(name)
+
+    @GetMapping("/find/{productId}")
+    fun findByName(@PathVariable productId: UUID): Product? = productService.findByProductId(productId)
 
     @PostMapping
     fun save(@RequestBody product: Product): Product = productService.save(product)
