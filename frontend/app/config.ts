@@ -1,3 +1,4 @@
 export const config = {
   productsUrl: process.env.APP_PRODUCTS_URL || "http://localhost/products",
+  reviewsUrl: process.env.APP_REVIEWS_URL || "http://localhost/reviews",
 };

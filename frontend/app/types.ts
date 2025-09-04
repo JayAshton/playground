@@ -5,3 +5,10 @@ type Product = {
   description?: string;
   imageUrl: string;
 };
+
+type Review = {
+  id: number;
+  productId: number;
+  rating: number;
+  description?: string;
+};
