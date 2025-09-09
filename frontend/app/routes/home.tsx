@@ -1,9 +1,8 @@
 import { useLoaderData } from "react-router";
 import { config } from "~/config";
 import { Inventory } from "../inventory/inventory";
-import type { Route } from "./+types/home";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Inventory | Shop App" },
   ];

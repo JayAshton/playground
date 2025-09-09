@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router";
 import { config } from "~/config";
 import { ProductComponent } from "~/inventory/product";
+import type { Product, Review } from "~/types";
 import type { Route } from "./+types/home";
 
 export function meta({ data }: Route.MetaArgs) {
@@ -24,7 +25,7 @@ export async function loader({params}) {
   return { product: products, reviews: reviews };
 }
 
-export default function Product() {
+export default function ProductRoute() {
   const data = useLoaderData<typeof loader>();
   return <ProductComponent data={data} />;
 }

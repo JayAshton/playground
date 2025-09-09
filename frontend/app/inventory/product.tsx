@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { Product, Review } from "~/types";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImage } from "./components/ProductImage";
 import { ProductReviews } from "./components/ProductReviews";

@@ -1,3 +1,5 @@
+import type { Product } from "~/types";
+
 export function ProductCard({
   product,
   isExpanded,
@@ -9,7 +11,8 @@ export function ProductCard({
   isExpanded: boolean;
   isLong: boolean;
   displayName: string;
-  onToggleExpand: (id: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  onToggleExpand: (_id: number) => void;
 }) {
   return (
     <div

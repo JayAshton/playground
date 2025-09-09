@@ -1,3 +1,5 @@
+import type { Product } from "~/types";
+
 export function ProductDetails({
   product,
   onCopy,

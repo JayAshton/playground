@@ -1,3 +1,4 @@
+import type { Product } from "~/types";
 import { ProductCard } from "./ProductCard";
 
 export function ProductGrid({
@@ -8,7 +9,8 @@ export function ProductGrid({
 }: {
   products: Product[];
   expanded: { [key: number]: boolean };
-  toggleExpand: (id: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  toggleExpand: (_id: number) => void;
   nameLimit: number;
 }) {
   return (

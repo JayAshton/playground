@@ -1,3 +1,5 @@
+import type { Review } from "~/types";
+
 export function ProductReviews({ reviews }: { reviews: Review[] }) {
   return (
     <div className="mt-8">

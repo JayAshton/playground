@@ -1,4 +1,4 @@
-type Product = {
+export type Product = {
   id: number;
   name: string;
   price: number;
@@ -6,7 +6,7 @@ type Product = {
   imageUrl: string;
 };
 
-type Review = {
+export type Review = {
   id: number;
   productId: number;
   rating: number;
