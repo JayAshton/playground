@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ProductGrid } from "./components/ProductGrid";
 
 type Product = {
   id: number;
@@ -31,58 +32,12 @@ export function Inventory({ products }: InventoryProps) {
           </div>
         </header>
         <div className="w-full max-w-8xl px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-            {products.map((product) => {
-              const isLong = product.name.length > NAME_LIMIT;
-              const isExpanded = expanded[product.id];
-              const displayName = isExpanded || !isLong
-                ? product.name
-                : product.name.slice(0, NAME_LIMIT) + "...";
-
-              return (
-                <div
-                  key={product.id}
-                  className="border rounded-3xl p-8 flex flex-col items-center shadow hover:shadow-xl transition min-h-[260px]"
-                >
-                  <img
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className="w-40 h-40 object-cover mb-6 rounded-2xl"
-                  />
-                  <h2 className="text-xl font-semibold mb-3 text-center w-full break-words">
-                    {displayName}
-                    {isLong && !isExpanded && (
-                      <button
-                        className="ml-2 text-blue-600 underline text-sm"
-                        onClick={() => toggleExpand(product.id)}
-                        aria-label="Show more"
-                      >
-                        more
-                      </button>
-                    )}
-                    {isLong && isExpanded && (
-                      <button
-                        className="ml-2 text-blue-600 underline text-sm"
-                        onClick={() => toggleExpand(product.id)}
-                        aria-label="Show less"
-                      >
-                        less
-                      </button>
-                    )}
-                  </h2>
-                  <p className="text-lg text-gray-700 dark:text-gray-200 text-center font-medium">
-                    ${product.price.toFixed(2)}
-                  </p>
-                  <a
-                    href={`/product/${product.id}`}
-                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-semibold"
-                  >
-                    View Product
-                  </a>
-                </div>
-              );
-            })}
-          </div>
+          <ProductGrid
+            products={products}
+            expanded={expanded}
+            toggleExpand={toggleExpand}
+            nameLimit={NAME_LIMIT}
+          />
         </div>
       </div>
     </main>
