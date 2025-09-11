@@ -15,7 +15,6 @@ export function ProductDetails({
       <p className="text-gray-200 mb-4">{product.description}</p>
       <div className="flex flex-col items-start gap-1">
         <span className="text-lg font-bold text-green-400">${product.price}</span>
-        <div className="h-5" />
         <div className="flex items-center gap-2 mt-1">
           <span className="text-xs text-gray-300">ID: {product.id}</span>
           <button
