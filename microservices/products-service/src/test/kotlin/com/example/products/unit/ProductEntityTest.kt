@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import java.util.UUID
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 @DataJpaTest
 class ProductEntityTest @Autowired constructor(
@@ -23,7 +25,7 @@ class ProductEntityTest @Autowired constructor(
         )
         val savedProduct = productRepository.save(product)
 
-        Assertions.assertNotNull(savedProduct.id)
-        Assertions.assertTrue(savedProduct.id is UUID)
+        assertNotNull(savedProduct.id)
+        assertTrue(savedProduct.id is UUID)
     }
 }

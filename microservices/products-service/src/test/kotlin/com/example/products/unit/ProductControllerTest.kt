@@ -6,7 +6,6 @@ import com.example.products.ProductController
 import com.example.products.ProductService
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.eq
@@ -18,6 +17,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import kotlin.test.assertEquals
 
 @WebMvcTest(ProductController::class)
 class ProductControllerTest @Autowired constructor(
@@ -30,7 +30,7 @@ class ProductControllerTest @Autowired constructor(
 
     @Test
     fun `should delete a single product`() {
-        val product: Product = Product(
+        val product = Product(
             name = "Laptop",
             price = 1100.0,
             description = "Updated",
@@ -49,10 +49,10 @@ class ProductControllerTest @Autowired constructor(
 
         val foundProduct: Product = mapper.readValue(responseBody)
 
-        Assertions.assertEquals(product.name, foundProduct.name)
-        Assertions.assertEquals(product.description, foundProduct.description)
-        Assertions.assertEquals(product.price, foundProduct.price)
-        Assertions.assertEquals(product.imageUrl, foundProduct.imageUrl)
+        assertEquals(product.name, foundProduct.name)
+        assertEquals(product.description, foundProduct.description)
+        assertEquals(product.price, foundProduct.price)
+        assertEquals(product.imageUrl, foundProduct.imageUrl)
     }
 
     @Test
@@ -76,10 +76,10 @@ class ProductControllerTest @Autowired constructor(
 
         val foundProduct: Product = mapper.readValue(responseBody)
 
-        Assertions.assertEquals(product.name, foundProduct.name)
-        Assertions.assertEquals(product.description, foundProduct.description)
-        Assertions.assertEquals(product.price, foundProduct.price)
-        Assertions.assertEquals(product.imageUrl, foundProduct.imageUrl)
+        assertEquals(product.name, foundProduct.name)
+        assertEquals(product.description, foundProduct.description)
+        assertEquals(product.price, foundProduct.price)
+        assertEquals(product.imageUrl, foundProduct.imageUrl)
     }
 
     @Test
@@ -111,13 +111,13 @@ class ProductControllerTest @Autowired constructor(
 
         val foundProducts: List<Product> = mapper.readValue(responseBody)
 
-        Assertions.assertEquals(2, foundProducts.size)
+        assertEquals(2, foundProducts.size)
         foundProducts.forEachIndexed { index, product ->
             val expected = products[index]
-            Assertions.assertEquals(expected.name, product.name)
-            Assertions.assertEquals(expected.price, product.price)
-            Assertions.assertEquals(expected.description, product.description)
-            Assertions.assertEquals(expected.imageUrl, product.imageUrl)
+            assertEquals(expected.name, product.name)
+            assertEquals(expected.price, product.price)
+            assertEquals(expected.description, product.description)
+            assertEquals(expected.imageUrl, product.imageUrl)
         }
     }
 

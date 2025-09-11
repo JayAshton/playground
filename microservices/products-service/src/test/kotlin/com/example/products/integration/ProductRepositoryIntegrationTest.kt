@@ -3,7 +3,6 @@ package com.example.products.integration
 import com.example.products.BaseTest
 import com.example.products.Product
 import com.example.products.ProductRepository
-import org.junit.jupiter.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import kotlin.test.Test
@@ -26,10 +25,10 @@ class ProductRepositoryIntegrationTest @Autowired constructor(
         val savedProduct = productRepository.save(product)
         val foundProduct: Product? = productRepository.findById(savedProduct.id)
 
-        Assertions.assertEquals(product.name, foundProduct?.name)
-        Assertions.assertEquals(product.description, foundProduct?.description)
-        Assertions.assertEquals(product.price, foundProduct?.price)
-        Assertions.assertEquals(product.imageUrl, foundProduct?.imageUrl)
+        assertEquals(product.name, foundProduct?.name)
+        assertEquals(product.description, foundProduct?.description)
+        assertEquals(product.price, foundProduct?.price)
+        assertEquals(product.imageUrl, foundProduct?.imageUrl)
     }
 
     @Test

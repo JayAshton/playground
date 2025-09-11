@@ -4,11 +4,12 @@ import com.example.products.BaseTest
 import com.example.products.Product
 import com.example.products.ProductRepository
 import com.example.products.ProductService
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import java.util.UUID
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 class ProductServiceTest : BaseTest() {
 
@@ -36,8 +37,8 @@ class ProductServiceTest : BaseTest() {
 
         val result = productService.update("Tablet", update)
 
-        Assertions.assertNotNull(result)
-        Assertions.assertEquals(550.0, result.price)
-        Assertions.assertEquals("Updated Android", result.description)
+        assertNotNull(result)
+        assertEquals(550.0, result.price)
+        assertEquals("Updated Android", result.description)
     }
 }
