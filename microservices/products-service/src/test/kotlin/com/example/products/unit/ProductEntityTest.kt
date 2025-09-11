@@ -1,6 +1,9 @@
-package com.example.products
+package com.example.products.unit
 
-import org.junit.jupiter.api.Assertions.*
+import com.example.products.BaseTest
+import com.example.products.Product
+import com.example.products.ProductRepository
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
@@ -20,7 +23,7 @@ class ProductEntityTest @Autowired constructor(
         )
         val savedProduct = productRepository.save(product)
 
-        assertNotNull(savedProduct.id)
-        assertTrue(savedProduct.id is UUID)
+        Assertions.assertNotNull(savedProduct.id)
+        Assertions.assertTrue(savedProduct.id is UUID)
     }
 }

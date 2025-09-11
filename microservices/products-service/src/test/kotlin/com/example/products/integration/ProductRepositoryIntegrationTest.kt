@@ -1,5 +1,8 @@
-package com.example.products
+package com.example.products.integration
 
+import com.example.products.BaseTest
+import com.example.products.Product
+import com.example.products.ProductRepository
 import org.junit.jupiter.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
@@ -9,7 +12,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 @DataJpaTest
-class ProductRepositoryTest @Autowired constructor(
+class ProductRepositoryIntegrationTest @Autowired constructor(
     val productRepository: ProductRepository
 ) : BaseTest() {
     @Test
@@ -78,7 +81,12 @@ class ProductRepositoryTest @Autowired constructor(
 
     @Test
     fun `should find product by name`() {
-        val product = Product(name = "Phone", price = 800.0, description = "Smartphone", imageUrl = "https://example.com/image.png")
+        val product = Product(
+            name = "Phone",
+            price = 800.0,
+            description = "Smartphone",
+            imageUrl = "https://example.com/image.png"
+        )
         productRepository.save(product)
         val found = productRepository.findByName("Phone")
 

@@ -1,8 +1,12 @@
-package com.example.products
+package com.example.products.unit
 
+import com.example.products.BaseTest
+import com.example.products.Product
+import com.example.products.ProductController
+import com.example.products.ProductService
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.eq
@@ -12,11 +16,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
 import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @WebMvcTest(ProductController::class)
 class ProductControllerTest @Autowired constructor(
@@ -39,7 +40,7 @@ class ProductControllerTest @Autowired constructor(
         whenever(productService.deleteByName(product.name)).thenReturn(product)
 
         val responseBody = mockMvc.perform(
-            delete("/products/${product.name}")
+            MockMvcRequestBuilders.delete("/products/${product.name}")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andReturn()
@@ -48,10 +49,10 @@ class ProductControllerTest @Autowired constructor(
 
         val foundProduct: Product = mapper.readValue(responseBody)
 
-        assertEquals(product.name, foundProduct.name)
-        assertEquals(product.description, foundProduct.description)
-        assertEquals(product.price, foundProduct.price)
-        assertEquals(product.imageUrl, foundProduct.imageUrl)
+        Assertions.assertEquals(product.name, foundProduct.name)
+        Assertions.assertEquals(product.description, foundProduct.description)
+        Assertions.assertEquals(product.price, foundProduct.price)
+        Assertions.assertEquals(product.imageUrl, foundProduct.imageUrl)
     }
 
     @Test
@@ -66,7 +67,7 @@ class ProductControllerTest @Autowired constructor(
         whenever(productService.findByName(product.name)).thenReturn(product)
 
         val responseBody = mockMvc.perform(
-            get("/products/${product.name}")
+            MockMvcRequestBuilders.get("/products/${product.name}")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andReturn()
@@ -75,10 +76,10 @@ class ProductControllerTest @Autowired constructor(
 
         val foundProduct: Product = mapper.readValue(responseBody)
 
-        assertEquals(product.name, foundProduct.name)
-        assertEquals(product.description, foundProduct.description)
-        assertEquals(product.price, foundProduct.price)
-        assertEquals(product.imageUrl, foundProduct.imageUrl)
+        Assertions.assertEquals(product.name, foundProduct.name)
+        Assertions.assertEquals(product.description, foundProduct.description)
+        Assertions.assertEquals(product.price, foundProduct.price)
+        Assertions.assertEquals(product.imageUrl, foundProduct.imageUrl)
     }
 
     @Test
@@ -101,7 +102,7 @@ class ProductControllerTest @Autowired constructor(
         whenever(productService.findAll()).thenReturn(products)
 
         val responseBody = mockMvc.perform(
-            get("/products/all")
+            MockMvcRequestBuilders.get("/products/all")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andReturn()
@@ -110,13 +111,13 @@ class ProductControllerTest @Autowired constructor(
 
         val foundProducts: List<Product> = mapper.readValue(responseBody)
 
-        assertEquals(2, foundProducts.size)
+        Assertions.assertEquals(2, foundProducts.size)
         foundProducts.forEachIndexed { index, product ->
             val expected = products[index]
-            assertEquals(expected.name, product.name)
-            assertEquals(expected.price, product.price)
-            assertEquals(expected.description, product.description)
-            assertEquals(expected.imageUrl, product.imageUrl)
+            Assertions.assertEquals(expected.name, product.name)
+            Assertions.assertEquals(expected.price, product.price)
+            Assertions.assertEquals(expected.description, product.description)
+            Assertions.assertEquals(expected.imageUrl, product.imageUrl)
         }
     }
 
@@ -141,14 +142,14 @@ class ProductControllerTest @Autowired constructor(
             whenever(productService.save(any())).thenReturn(product)
 
             mockMvc.perform(
-                post("/products")
+                MockMvcRequestBuilders.post("/products")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mapper.writeValueAsString(product))
             )
-                .andExpect(status().isOk)
-                .andExpect(jsonPath("$.price").value(product.price))
-                .andExpect(jsonPath("$.description").value(product.description))
-                .andExpect(jsonPath("$.imageUrl").value(product.imageUrl))
+                .andExpect(MockMvcResultMatchers.status().isOk)
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(product.price))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(product.description))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.imageUrl").value(product.imageUrl))
         }
     }
 
@@ -164,13 +165,13 @@ class ProductControllerTest @Autowired constructor(
         whenever(productService.update(eq("Laptop"), any())).thenReturn(update)
 
         mockMvc.perform(
-            put("/products/Laptop")
+            MockMvcRequestBuilders.put("/products/Laptop")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(update))
         )
-            .andExpect(status().isOk)
-            .andExpect(jsonPath("$.price").value(1100.0))
-            .andExpect(jsonPath("$.description").value("Updated"))
-            .andExpect(jsonPath("$.imageUrl").value("https://example.com/image.png"))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(1100.0))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("Updated"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.imageUrl").value("https://example.com/image.png"))
     }
 }
