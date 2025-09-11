@@ -45,7 +45,7 @@ export function ProductCard({
           </button>
         )}
       </h2>
-      <p className="text-lg text-gray-700 dark:text-gray-200 text-center font-medium">
+      <p className="text-lg text-gray-200 text-center font-medium">
         ${product.price.toFixed(2)}
       </p>
       <a
