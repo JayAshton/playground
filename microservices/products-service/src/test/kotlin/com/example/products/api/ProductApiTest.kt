@@ -1,7 +1,7 @@
 package com.example.products.api
 
 import com.example.products.Product
-import com.github.javafaker.Faker
+import net.datafaker.Faker
 import io.restassured.RestAssured
 import io.restassured.http.ContentType
 import org.junit.jupiter.api.BeforeAll
@@ -25,10 +25,10 @@ class ProductApiTest {
     @Test
     fun `should create and fetch a product`() {
         val product = Product(
-            name = faker.commerce().productName() + faker.number().randomNumber(5, false),
+            name = faker.commerce().productName() + faker.number().randomNumber(5),
             description = faker.lorem().sentence(),
             price = faker.commerce().price().toDouble(),
-            imageUrl = "https://placehold.co/600x400"
+            imageUrl = faker.internet().image(600, 400)
         )
 
         val response = RestAssured.given()

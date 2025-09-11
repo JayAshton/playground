@@ -1,6 +1,6 @@
 package com.example.products
 
-import com.github.javafaker.Faker
+import net.datafaker.Faker
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
@@ -40,7 +40,7 @@ class DataLoader(
                 name = faker.commerce().productName(),
                 description = faker.lorem().sentence(),
                 price = faker.commerce().price().toDouble(),
-                imageUrl = "https://placehold.co/600x400"
+                imageUrl = faker.internet().image(600, 400)
             )
         }
     }

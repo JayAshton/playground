@@ -19,9 +19,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.github.javafaker:javafaker:1.0.2") {
-        exclude(group = "org.yaml", module = "snakeyaml")
-    }
+    implementation("net.datafaker:datafaker:2.4.4")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
@@ -43,7 +41,6 @@ kotlin {
 
 tasks.test {
     useJUnitPlatform()
-    exclude("**/api/**")
 }
 
 tasks.withType<Test> {
