@@ -1,12 +1,13 @@
-// eslint.config.js
 import js from "@eslint/js";
-import tseslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import jsxA11y from "eslint-plugin-jsx-a11y";
+import playwright from "eslint-plugin-playwright";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
+import { defineConfig } from "eslint/config";
+import tseslint from "typescript-eslint";
 
-export default [
+export default defineConfig([
   {
     ignores: [
       "build/**",
@@ -20,6 +21,7 @@ export default [
     files: ["**/*.{js,cjs,mjs}"],
     ...js.configs.recommended,
   },
+  tseslint.configs.recommended,
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -43,7 +45,7 @@ export default [
       },
     },
     plugins: {
-      "@typescript-eslint": tseslint,
+      "@typescript-eslint": tseslint.plugin,
       react,
       "react-hooks": reactHooks,
       "jsx-a11y": jsxA11y,
@@ -51,9 +53,17 @@ export default [
     rules: {
       "react/react-in-jsx-scope": "off",
       "no-unused-vars": "off",
+      "@typescript-eslint/no-floating-promises": "error",
     },
     settings: {
       react: { version: "detect", pragma: "React", jsxPragma: "React" },
     },
   },
-];
+  {
+    files: ["tests/e2e/**/*.ts"],
+    ...playwright.configs["flat/recommended"],
+    rules: {
+      ...playwright.configs["flat/recommended"].rules,
+    },
+  },
+]);

@@ -1,9 +1,11 @@
 import { type Page } from "@playwright/test";
 import { InventoryPage } from "./pages/inventory.po";
+import { ProductPage } from "./pages/product.po";
 
 export interface PageFixtures {
   determinePage: Page;
   inventoryPage: InventoryPage;
+  productPage: ProductPage;
 }
 
 export const pageFixtures = {
@@ -18,5 +20,8 @@ export const pageFixtures = {
   },
   inventoryPage: async ({ determinePage }, use) => {
     use(new InventoryPage(determinePage));
+  },
+  productPage: async ({ determinePage }, use) => {
+    use(new ProductPage(determinePage));
   },
 };
