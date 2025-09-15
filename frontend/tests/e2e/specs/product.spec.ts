@@ -1,3 +1,4 @@
+import { expect } from "@playwright/test";
 import { test } from "../fixtures.ts";
 
 test.describe("Home Inventory Page @example", () => {
@@ -11,11 +12,10 @@ test.describe("Home Inventory Page @example", () => {
   }) => {
     const name = await inventoryPage.productCard.name.first().textContent();
     const price = await inventoryPage.productCard.price.first().textContent();
-    if (name === null || price === null) {
-      throw new Error("Product name or price not found");
-    }
-    await inventoryPage.productCard.viewButton.first().click();
+    expect(name).not.toBeNull();
+    expect(price).not.toBeNull();
 
-    await productPage.verifyProductIsVisible(name, price);
+    await inventoryPage.productCard.viewButton.first().click();
+    await productPage.verifyProductIsVisible(name!, price!);
   });
 });
