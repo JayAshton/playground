@@ -16,7 +16,10 @@ export default [
       ".react-router/**",
     ],
   },
-  js.configs.recommended,
+  {
+    files: ["**/*.{js,cjs,mjs}"],
+    ...js.configs.recommended,
+  },
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -25,6 +28,7 @@ export default [
       sourceType: "module",
       parserOptions: {
         ecmaFeatures: { jsx: true },
+        project: "./tsconfig.json",
       },
       globals: {
         fetch: "readonly",
@@ -46,6 +50,7 @@ export default [
     },
     rules: {
       "react/react-in-jsx-scope": "off",
+      "no-unused-vars": "off",
     },
     settings: {
       react: { version: "detect", pragma: "React", jsxPragma: "React" },

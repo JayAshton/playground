@@ -9,12 +9,11 @@ export function ProductGrid({
 }: {
   products: Product[];
   expanded: { [key: number]: boolean };
-  // eslint-disable-next-line no-unused-vars
-  toggleExpand: (_id: number) => void;
+  toggleExpand: (id: number) => void;
   nameLimit: number;
 }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10" data-testid="product-grid">
       {products.map((product) => {
         const isLong = product.name.length > nameLimit;
         const isExpanded = expanded[product.id];

@@ -11,8 +11,7 @@ export function ProductCard({
   isExpanded: boolean;
   isLong: boolean;
   displayName: string;
-  // eslint-disable-next-line no-unused-vars
-  onToggleExpand: (_id: number) => void;
+  onToggleExpand: (id: number) => void;
 }) {
   return (
     <div
