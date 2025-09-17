@@ -1,9 +1,8 @@
 plugins {
-    kotlin("jvm")
-    kotlin("plugin.spring") version "1.9.25"
-    id("org.springframework.boot") version "3.5.5"
-    id("io.spring.dependency-management") version "1.1.7"
-    kotlin("plugin.jpa") version "1.9.25"
+    kotlin("plugin.spring")
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
+    kotlin("plugin.jpa")
 }
 
 group = "org.example"
@@ -17,32 +16,14 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    runtimeOnly("org.postgresql:postgresql")
+    implementation("net.datafaker:datafaker:2.4.4")
+    implementation(kotlin("stdlib"))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.0")
+    testImplementation("io.rest-assured:rest-assured:5.5.6")
     testImplementation("com.h2database:h2")
+    runtimeOnly("org.postgresql:postgresql")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-}
-
-
-kotlin {
-    jvmToolchain(21)
-    compilerOptions {
-        freeCompilerArgs.addAll("-Xjsr305=strict")
-    }
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun> {
