@@ -15,7 +15,7 @@ export class LighthouseUtils {
   ) {}
 
   private readonly DEFAULT_THRESHOLDS = {
-    performance: 80,
+    performance: 95,
     accessibility: 100,
     "best-practices": 100,
   };

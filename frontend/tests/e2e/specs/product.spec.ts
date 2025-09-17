@@ -1,12 +1,12 @@
 import { expect } from "@playwright/test";
 import { test } from "../fixtures.ts";
 
-test.describe("Home Inventory Page @example", () => {
+test.describe("Home Inventory Page @product", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
   });
 
-  test("Selecting a product displays the selected product @product", async ({
+  test("Selecting a product displays the selected product", async ({
     inventoryPage,
     productPage,
   }) => {

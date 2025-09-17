@@ -11,3 +11,4 @@ frontend/.next/
 frontend/build/
 frontend/.react-router/
 frontend/test-results/
+frontend/playwright-report/
