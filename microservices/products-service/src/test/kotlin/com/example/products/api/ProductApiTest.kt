@@ -5,10 +5,12 @@ import net.datafaker.Faker
 import io.restassured.RestAssured
 import io.restassured.http.ContentType
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import kotlin.test.assertEquals
 
+@Tag("api")
 class ProductApiTest {
 
     companion object {

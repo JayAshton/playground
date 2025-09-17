@@ -14,6 +14,7 @@ import kotlin.test.assertNull
 class ProductRepositoryIntegrationTest @Autowired constructor(
     val productRepository: ProductRepository
 ) : BaseTest() {
+
     @Test
     fun `should persist and retrieve product`() {
         val product = Product(
