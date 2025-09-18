@@ -30,7 +30,7 @@ export function ProductCard({
         {isLong && !isExpanded && (
           <button
             className="ml-2 text-blue-600 underline text-sm"
-            onClick={() => onToggleExpand(product.id)}
+            onClick={() => onToggleExpand(parseInt(product.id))}
             aria-label="Show more"
           >
             more
@@ -39,7 +39,7 @@ export function ProductCard({
         {isLong && isExpanded && (
           <button
             className="ml-2 text-blue-600 underline text-sm"
-            onClick={() => onToggleExpand(product.id)}
+            onClick={() => onToggleExpand(parseInt(product.id))}
             aria-label="Show less"
           >
             less

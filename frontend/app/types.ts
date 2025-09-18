@@ -1,5 +1,5 @@
 export type Product = {
-  id: number;
+  id: string;
   name: string;
   price: number;
   description?: string;
@@ -7,14 +7,14 @@ export type Product = {
 };
 
 export type Review = {
-  id: number;
-  productId: number;
+  id: string;
+  productId: string;
   rating: number;
   description?: string;
 };
 
 export type BasketItem = {
-  productId: number;
+  productId: string;
   productName: string;
   quantity: number;
   imageUrl: string;

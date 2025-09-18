@@ -1,13 +1,6 @@
 import { useState } from "react";
+import type { Product } from "~/types";
 import { ProductGrid } from "./components/ProductGrid";
-
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  description?: string;
-  imageUrl: string;
-};
 
 type InventoryProps = {
   products: Product[];
@@ -20,7 +13,6 @@ export function Inventory({ products }: InventoryProps) {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  // Set a character limit for truncation
   const NAME_LIMIT = 40;
 
   return (

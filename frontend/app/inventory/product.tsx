@@ -34,7 +34,6 @@ export function ProductComponent({ data }: ProductData) {
       const result = await response.json();
       localStorage.setItem("sessionId", result.sessionId);
 
-      // SPA navigation works because this is inside the Router context
       navigate("/basket");
     } catch (err) {
       console.error(err);

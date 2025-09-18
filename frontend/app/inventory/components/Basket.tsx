@@ -1,9 +1,33 @@
+import { useState } from "react";
 import type { BasketItem } from "~/types";
 
-export function BasketComponent({ items }: { items: BasketItem[] }) {
+export function BasketComponent({ items: initialItems }: { items: BasketItem[] }) {
+  const [items, setItems] = useState<BasketItem[]>(initialItems);
+
   if (!Array.isArray(items) || items.length === 0) {
     return <p className="text-white p-4">Your basket is empty.</p>;
   }
+
+  const handleRemove = async (productId: string) => {
+    const updatedItems = items.filter(item => item.productId !== productId);
+    setItems(updatedItems);
+
+    try {
+      const sessionId = localStorage.getItem("sessionId");
+      if (!sessionId) return;
+
+      const response = await fetch(`http://localhost/basket-api?sessionId=${sessionId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedItems),
+      });
+
+      if (!response.ok) throw new Error("Failed to update basket");
+    } catch (err) {
+      console.error("Error updating basket:", err);
+      setItems(items);
+    }
+  };
 
   return (
     <div className="p-6 text-white max-w-2xl mx-auto">
@@ -14,7 +38,6 @@ export function BasketComponent({ items }: { items: BasketItem[] }) {
             key={item.productId}
             className="flex items-center gap-4 p-4 bg-gray-900 rounded-lg shadow hover:bg-gray-800 transition"
           >
-            {/* Product Image */}
             {item.imageUrl ? (
               <img
                 src={item.imageUrl}
@@ -26,13 +49,16 @@ export function BasketComponent({ items }: { items: BasketItem[] }) {
                 No Image
               </div>
             )}
-            {/* Product Details */}
             <div className="flex-1 flex flex-col">
               <span className="font-semibold text-lg">{item.productName}</span>
               <span className="text-gray-400 text-sm">Qty: {item.quantity}</span>
             </div>
-            {/* Optional: total price or remove button */}
-            {/* <span className="font-bold text-green-400">${item.price * item.quantity}</span> */}
+            <button
+              onClick={() => handleRemove(item.productId)}
+              className="px-3 py-1 bg-red-600 hover:bg-red-500 rounded text-white text-sm font-semibold"
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>
