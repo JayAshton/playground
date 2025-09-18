@@ -12,3 +12,10 @@ export type Review = {
   rating: number;
   description?: string;
 };
+
+export type BasketItem = {
+  productId: number;
+  productName: string;
+  quantity: number;
+  imageUrl: string;
+};

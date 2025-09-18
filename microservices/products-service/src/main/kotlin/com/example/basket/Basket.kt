@@ -12,7 +12,8 @@ import java.util.UUID
 data class BasketItem(
     var productId: UUID,
     var productName: String,
-    var quantity: Int
+    var quantity: Int,
+    var imageUrl: String
 )
 
 @Entity

@@ -18,7 +18,7 @@ class ProductApiTest {
         @BeforeAll
         @JvmStatic
         fun setup() {
-            RestAssured.baseURI = "http://localhost/products"
+            RestAssured.baseURI = "http://localhost/product-api"
             RestAssured.port = 80
             RestAssured.enableLoggingOfRequestAndResponseIfValidationFails()
         }
