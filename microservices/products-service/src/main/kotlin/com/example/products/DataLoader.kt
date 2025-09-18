@@ -77,7 +77,7 @@ class DataLoader(
         var attempt = 0
         while (attempt < 3) {
             try {
-                restTemplate.postForEntity("$reviewsServiceUrl/reviews", entity, String::class.java)
+                restTemplate.postForEntity("$reviewsServiceUrl/review-api", entity, String::class.java)
                 return
             } catch (e: Exception) {
                 attempt++

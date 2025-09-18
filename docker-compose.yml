@@ -36,7 +36,8 @@ services:
       dockerfile: products-service/Dockerfile
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.products.rule=PathPrefix(`/products`)"
+      - "traefik.http.routers.basket.rule=PathPrefix(`/basket-api`)"
+      - "traefik.http.routers.products.rule=PathPrefix(`/product-api`)"
       - "traefik.http.services.products.loadbalancer.server.port=8080"
     ports:
       - 8080
@@ -60,7 +61,7 @@ services:
       dockerfile: reviews-service/Dockerfile
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.reviews.rule=PathPrefix(`/reviews`)"
+      - "traefik.http.routers.reviews.rule=PathPrefix(`/review-api`)"
       - "traefik.http.services.reviews.loadbalancer.server.port=8080"
     ports:
       - 8080

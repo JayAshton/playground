@@ -44,7 +44,7 @@ class ReviewControllerTest @Autowired constructor(
         whenever(reviewService.findAll()).thenReturn(reviews)
 
         val responseBody = mockMvc.perform(
-            get("/reviews/all")
+            get("/review-api/all")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andReturn()
@@ -80,7 +80,7 @@ class ReviewControllerTest @Autowired constructor(
 
         whenever(reviewService.findByProductId(productId)).thenReturn(reviews)
         val responseBody = mockMvc.perform(
-            get("/reviews/${productId}")
+            get("/review-api/${productId}")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andReturn()
@@ -117,7 +117,7 @@ class ReviewControllerTest @Autowired constructor(
             whenever(reviewService.save(any())).thenReturn(review)
 
             mockMvc.perform(
-                post("/reviews")
+                post("/review-api")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mapper.writeValueAsString(review))
             )

@@ -15,6 +15,8 @@ export default defineConfig([
       "**/assets/*.js",
       "node_modules/**",
       ".react-router/**",
+      "playwright-report/**",
+      "test-results/**",
     ],
   },
   {

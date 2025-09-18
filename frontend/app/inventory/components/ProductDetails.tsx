@@ -9,6 +9,25 @@ export function ProductDetails({
   onCopy: () => void;
   copied: boolean;
 }) {
+  const handleAddToBasket = () => {
+    const basket = JSON.parse(localStorage.getItem("basket") || "[]");
+
+    const existingItemIndex = basket.findIndex((item: any) => item.id === product.id);
+    if (existingItemIndex !== -1) {
+      basket[existingItemIndex].quantity += 1;
+    } else {
+      basket.push({
+        id: product.id,
+        name: product.name,
+        quantity: 1,
+      });
+    }
+
+    localStorage.setItem("basket", JSON.stringify(basket));
+
+    console.log(`${product.name} added to basket`);
+  };
+
   return (
     <div className="w-full text-left" data-testid="product-details">
       <h2 className="text-xl font-semibold mb-2 text-white" data-testid="product-name">{product.name}</h2>
@@ -26,6 +45,13 @@ export function ProductDetails({
             {copied ? "Copied!" : "Copy"}
           </button>
         </div>
+        <button
+          onClick={handleAddToBasket}
+          className="mt-2 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-500 focus:outline-none"
+          data-testid="add-to-basket-button"
+        >
+          Add to Basket
+        </button>
       </div>
     </div>
   );

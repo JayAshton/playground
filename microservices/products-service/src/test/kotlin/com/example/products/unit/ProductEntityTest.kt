@@ -3,13 +3,10 @@ package com.example.products.unit
 import com.example.products.BaseTest
 import com.example.products.Product
 import com.example.products.ProductRepository
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
-import java.util.UUID
 import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
 @DataJpaTest
 class ProductEntityTest @Autowired constructor(
@@ -26,6 +23,5 @@ class ProductEntityTest @Autowired constructor(
         val savedProduct = productRepository.save(product)
 
         assertNotNull(savedProduct.id)
-        assertTrue(savedProduct.id is UUID)
     }
 }

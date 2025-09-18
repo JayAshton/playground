@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/product-api")
 class ProductController(private val productService: ProductService) {
 
     @GetMapping("/all")

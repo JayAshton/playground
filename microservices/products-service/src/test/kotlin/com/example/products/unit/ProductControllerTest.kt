@@ -40,7 +40,7 @@ class ProductControllerTest @Autowired constructor(
         whenever(productService.deleteByName(product.name)).thenReturn(product)
 
         val responseBody = mockMvc.perform(
-            MockMvcRequestBuilders.delete("/products/${product.name}")
+            MockMvcRequestBuilders.delete("/product-api/${product.name}")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andReturn()
@@ -67,7 +67,7 @@ class ProductControllerTest @Autowired constructor(
         whenever(productService.findByName(product.name)).thenReturn(product)
 
         val responseBody = mockMvc.perform(
-            MockMvcRequestBuilders.get("/products/${product.name}")
+            MockMvcRequestBuilders.get("/product-api/${product.name}")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andReturn()
@@ -102,7 +102,7 @@ class ProductControllerTest @Autowired constructor(
         whenever(productService.findAll()).thenReturn(products)
 
         val responseBody = mockMvc.perform(
-            MockMvcRequestBuilders.get("/products/all")
+            MockMvcRequestBuilders.get("/product-api/all")
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andReturn()
@@ -142,7 +142,7 @@ class ProductControllerTest @Autowired constructor(
             whenever(productService.save(any())).thenReturn(product)
 
             mockMvc.perform(
-                MockMvcRequestBuilders.post("/products")
+                MockMvcRequestBuilders.post("/product-api")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mapper.writeValueAsString(product))
             )
@@ -165,7 +165,7 @@ class ProductControllerTest @Autowired constructor(
         whenever(productService.update(eq("Laptop"), any())).thenReturn(update)
 
         mockMvc.perform(
-            MockMvcRequestBuilders.put("/products/Laptop")
+            MockMvcRequestBuilders.put("/product-api/Laptop")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(update))
         )

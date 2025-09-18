@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
 
 @RestController
-@RequestMapping("/reviews")
+@RequestMapping("/review-api")
 class ReviewController(private val reviewService: ReviewService) {
     @GetMapping("/all")
     fun listReviews(): List<Review> = reviewService.findAll()
