@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import type { BasketItem } from "~/types";
 
 export function BasketComponent({ items: initialItems }: { items: BasketItem[] }) {
@@ -12,11 +13,13 @@ export function BasketComponent({ items: initialItems }: { items: BasketItem[] }
     const updatedItems = items.filter(item => item.productId !== productId);
     setItems(updatedItems);
 
+    localStorage.setItem("basket", JSON.stringify(updatedItems));
+
     try {
       const sessionId = localStorage.getItem("sessionId");
       if (!sessionId) return;
 
-      const response = await fetch(`http://localhost/basket-api?sessionId=${sessionId}`, {
+      const response = await fetch(`http://localhost/basket-api/${sessionId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedItems),
@@ -31,6 +34,11 @@ export function BasketComponent({ items: initialItems }: { items: BasketItem[] }
 
   return (
     <div className="p-6 text-white max-w-2xl mx-auto">
+      <header className="w-full p-4">
+          <h1 className="text-2xl font-bold text-left text-white">
+            <Link to="/">Shop Inventory</Link>
+          </h1>
+        </header>
       <h1 className="text-3xl font-bold mb-6 text-center">Your Basket</h1>
       <ul className="space-y-4">
         {items.map((item) => (
