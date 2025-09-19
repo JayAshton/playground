@@ -19,12 +19,10 @@ export function Inventory({ products }: InventoryProps) {
   return (
     <main className="flex items-center justify-center pb-4 text-white">
       <div className="flex-1 flex flex-col items-center">
-        <header className="flex flex-col items-center p-4">
-          <div className="w-full mx-auto items-start">
-            <h1 className="text-2xl font-bold text-left text-white">
+        <header className="w-full p-4 flex justify-center items-center">
+          <h1 className="text-2xl font-bold text-white">
             <Link to="/">Shop Inventory</Link>
           </h1>
-          </div>
         </header>
         <div className="w-full max-w-8xl px-10">
           <ProductGrid

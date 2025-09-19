@@ -33,7 +33,7 @@ export function ProductDetails({
 
 
   return (
-    <div className="w-full text-left relative" data-testid="product-details">
+    <div className="w-full relative" data-testid="product-details">
     <button
       type="button"
       onClick={onOpenBasket}
