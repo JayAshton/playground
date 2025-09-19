@@ -66,6 +66,7 @@ export default defineConfig([
     ...playwright.configs["flat/recommended"],
     rules: {
       ...playwright.configs["flat/recommended"].rules,
+      "playwright/expect-expect": "off", // Allow assertions inside page objects
     },
   },
 ]);

@@ -1,4 +1,5 @@
 import { type Page } from "@playwright/test";
+import { BasketPage } from "./pages/basket.po";
 import { InventoryPage } from "./pages/inventory.po";
 import { ProductPage } from "./pages/product.po";
 
@@ -6,6 +7,7 @@ export interface PageFixtures {
   determinePage: Page;
   inventoryPage: InventoryPage;
   productPage: ProductPage;
+  basketPage: BasketPage;
 }
 
 export const pageFixtures = {
@@ -23,5 +25,8 @@ export const pageFixtures = {
   },
   productPage: async ({ determinePage }, use) => {
     use(new ProductPage(determinePage));
+  },
+  basketPage: async ({ determinePage }, use) => {
+    use(new BasketPage(determinePage));
   },
 };

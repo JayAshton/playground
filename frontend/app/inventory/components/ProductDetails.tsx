@@ -37,12 +37,11 @@ export function ProductDetails({
     <button
       type="button"
       onClick={onOpenBasket}
-      className="fixed top-4 right-4 px-4 py-2 rounded text-black bg-white hover:bg-gray-300 focus:outline-none"
+      className="fixed top-4 right-4 px-4 py-2 rounded text-black bg-white hover:bg-gray-300 focus:outline-none cursor-pointer"
       data-testid="open-basket-button"
     >
       Open Basket
     </button>
-
     <h2 className="text-xl font-semibold mb-2 text-white" data-testid="product-name">
       {product.name}
     </h2>
@@ -66,12 +65,10 @@ export function ProductDetails({
           {copied ? "Copied!" : "Copy"}
         </button>
       </div>
-
-      {/* Full width Add to Basket button */}
       <button
         type="button"
         onClick={handleAddToBasket}
-        className="mt-4 w-full px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-500 focus:outline-none"
+        className="mt-4 w-full px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-500 focus:outline-none cursor-pointer"
         data-testid="add-to-basket-button"
       >
         Add to Basket

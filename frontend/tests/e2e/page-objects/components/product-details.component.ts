@@ -8,6 +8,7 @@ export class ProductDetailsComponent {
   readonly description = this.details.getByTestId("product-description");
   readonly id = this.details.getByTestId("product-id");
   readonly copyIdBtn = this.details.getByTestId("copy-id-button");
+  readonly addToBasketBtn = this.details.getByTestId("add-to-basket-button");
 
   constructor(readonly page: Page) {}
 }

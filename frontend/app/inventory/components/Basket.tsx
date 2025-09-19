@@ -40,30 +40,33 @@ export function BasketComponent({ items: initialItems }: { items: BasketItem[] }
           </h1>
         </header>
       <h1 className="text-3xl font-bold mb-6 text-center">Your Basket</h1>
-      <ul className="space-y-4">
+      <ul className="space-y-4" data-testid="basket-items-list">
         {items.map((item) => (
           <li
             key={item.productId}
             className="flex items-center gap-4 p-4 bg-gray-900 rounded-lg shadow hover:bg-gray-800 transition"
+            data-testid="basket-item"
           >
             {item.imageUrl ? (
               <img
                 src={item.imageUrl}
                 alt={item.productName}
                 className="w-16 h-16 object-cover rounded"
+                data-testid="basket-item-image"
               />
             ) : (
-              <div className="w-16 h-16 bg-gray-700 rounded flex items-center justify-center text-gray-400 text-sm">
+              <div className="w-16 h-16 bg-gray-700 rounded flex items-center justify-center text-gray-400 text-sm" data-testid="basket-item-no-image">
                 No Image
               </div>
             )}
             <div className="flex-1 flex flex-col">
-              <span className="font-semibold text-lg">{item.productName}</span>
-              <span className="text-gray-400 text-sm">Qty: {item.quantity}</span>
+              <span className="font-semibold text-lg">Product: <b data-testid="basket-item-name">{item.productName}</b></span>
+              <span className="text-gray-400 text-sm">Qty: <b data-testid="basket-item-quantity">{item.quantity}</b></span>
             </div>
             <button
               onClick={() => handleRemove(item.productId)}
-              className="px-3 py-1 bg-red-600 hover:bg-red-500 rounded text-white text-sm font-semibold"
+              className="px-3 py-1 bg-red-600 hover:bg-red-500 rounded text-white text-sm font-semibold cursor-pointer"
+              data-testid="basket-item-remove"
             >
               Remove
             </button>
