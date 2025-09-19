@@ -42,9 +42,9 @@ export function ProductComponent({ data }: ProductData) {
 
   return (
     <main className="pb-4 min-h-screen">
-      <div className="flex-1 flex flex-col items-start gap-12 min-h-0 max-w-lg w-full mx-auto items-start">
-        <header className="w-full p-4">
-          <h1 className="text-2xl font-bold text-left text-white">
+      <div className="flex-1 flex flex-col items-start gap-12 min-h-0 max-w-lg w-full mx-auto items-start items-center">
+        <header className="w-full p-4 flex justify-center items-center">
+          <h1 className="text-2xl font-bold text-white">
             <Link to="/">Shop Inventory</Link>
           </h1>
         </header>

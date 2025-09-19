@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import type { Product } from "~/types";
 import { ProductGrid } from "./components/ProductGrid";
 
@@ -19,8 +20,10 @@ export function Inventory({ products }: InventoryProps) {
     <main className="flex items-center justify-center pb-4 text-white">
       <div className="flex-1 flex flex-col items-center">
         <header className="flex flex-col items-center p-4">
-          <div className="w-[500px] max-w-[100vw]">
-            <h1 className="text-2xl font-bold text-center">Shop Inventory</h1>
+          <div className="w-full mx-auto items-start">
+            <h1 className="text-2xl font-bold text-left text-white">
+            <Link to="/">Shop Inventory</Link>
+          </h1>
           </div>
         </header>
         <div className="w-full max-w-8xl px-10">

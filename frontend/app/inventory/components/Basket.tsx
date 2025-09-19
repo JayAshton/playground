@@ -33,9 +33,9 @@ export function BasketComponent({ items: initialItems }: { items: BasketItem[] }
   };
 
   return (
-    <div className="p-6 text-white max-w-2xl mx-auto">
-      <header className="w-full p-4">
-          <h1 className="text-2xl font-bold text-left text-white">
+    <div className="text-white max-w-2xl mx-auto">
+      <header className="w-full p-4 flex justify-center items-center">
+          <h1 className="text-2xl font-bold text-white">
             <Link to="/">Shop Inventory</Link>
           </h1>
         </header>
