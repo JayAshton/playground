@@ -6,7 +6,16 @@ export function BasketComponent({ items: initialItems }: { items: BasketItem[] }
   const [items, setItems] = useState<BasketItem[]>(initialItems);
 
   if (!Array.isArray(items) || items.length === 0) {
-    return <p className="text-white p-4">Your basket is empty.</p>;
+    return (
+      <div className="text-white max-w-2xl mx-auto">
+        <header className="w-full p-4 flex justify-center items-center">
+            <h1 className="text-2xl font-bold text-white">
+              <Link to="/">Shop Inventory</Link>
+            </h1>
+          </header>
+        <p className="text-white p-4">Your basket is empty.</p>
+      </div>
+    )
   }
 
   const handleRemove = async (productId: string) => {
