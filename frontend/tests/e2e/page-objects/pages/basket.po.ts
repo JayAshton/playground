@@ -10,6 +10,9 @@ export class BasketPage extends Base {
   readonly basketItemNoImage = this.page.getByTestId("basket-item-no-image");
   readonly basketItemRemoveBtn =
     this.basketItem.getByTestId("basket-item-remove");
+  readonly basketEmptyMessage = this.page.locator("p", {
+    hasText: "Your basket is empty.",
+  });
 
   constructor(readonly page: Page) {
     super(page);
