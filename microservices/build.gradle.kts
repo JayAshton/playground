@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.1.20" apply false
+    kotlin("jvm") version "2.1.20" apply true
     kotlin("plugin.spring") version "1.9.25" apply false
     id("org.springframework.boot") version "3.5.5" apply false
     id("io.spring.dependency-management") version "1.1.7" apply false
@@ -9,16 +9,20 @@ plugins {
 subprojects {
     plugins.apply("org.jetbrains.kotlin.jvm")
 
+    kotlin {
+        jvmToolchain(21)
+    }
+
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin")
-        add("implementation", "org.jetbrains.kotlin:kotlin-reflect")
-        add("testImplementation", "org.jetbrains.kotlin:kotlin-test-junit5")
+        add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:2.17.2")
+        add("implementation", "org.jetbrains.kotlin:kotlin-reflect:2.1.20")
+        add("testImplementation", "org.jetbrains.kotlin:kotlin-test-junit5:2.1.20")
         add("testImplementation", "org.mockito.kotlin:mockito-kotlin:5.2.0")
-        add("testImplementation", "io.rest-assured:rest-assured:5.5.6")
+        add("testImplementation", "io.rest-assured:rest-assured:5.5.0")
     }
 
     tasks.withType<Test> {
