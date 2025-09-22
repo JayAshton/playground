@@ -2,6 +2,7 @@
 .idea/
 
 /microservices/.gradle/**
+/microservices/**/.gradle/**
 /microservices/build/**
 /microservices/**/build/**
 /microservices/**/out/**
